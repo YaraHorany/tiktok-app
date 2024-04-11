@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_app/authentication/screens/signup_screen.dart';
 import 'package:tiktok_app/widgets/text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -80,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              // Get.to(SignUpScreen());
+                              Get.to(() => SignUpScreen());
                             },
                             child: const Text(
                               "Sign up",
