@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/text_form_field.dart';
+import '../authentication_controller.dart';
 import 'login_screen.dart';
-// import '../authentication_controller.dart';
 
 class SignUpScreen extends StatelessWidget {
-  // final AuthenticationController authenticationController =
-  // Get.put(AuthenticationController());
+  final AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
 
   SignUpScreen({Key? key}) : super(key: key);
 
@@ -39,7 +39,7 @@ class SignUpScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Allow user to pick an image.
-                  // authenticationController.chooseImageFromGallery();
+                  authenticationController.chooseImageFromGallery();
                 },
                 child: const CircleAvatar(
                   radius: 80,
