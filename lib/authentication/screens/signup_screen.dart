@@ -52,24 +52,26 @@ class SignUpScreen extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
-                      // User name
-                      const InputTextField(
-                          iconData: Icon(Icons.person_outline),
+                      // User name textField
+                      InputTextField(
+                          controller: authenticationController.userName,
+                          iconData: const Icon(Icons.person_outline),
                           fieldName: "Username"),
                       const SizedBox(height: 20),
                       // Email textField
-                      const InputTextField(
-                          iconData: Icon(Icons.email_outlined),
+                      InputTextField(
+                          controller: authenticationController.email,
+                          iconData: const Icon(Icons.email_outlined),
                           fieldName: "Email Address"),
                       const SizedBox(height: 20),
                       // Password textField
-                      const InputTextField(
-                        iconData: Icon(Icons.lock_outline),
-                        fieldName: "Password",
-                        isObscure: true,
-                      ),
+                      InputTextField(
+                          controller: authenticationController.password,
+                          iconData: const Icon(Icons.lock_outline),
+                          fieldName: "Password",
+                          isObscure: true),
                       const SizedBox(height: 20),
-                      // Login button
+                      // Sign Up button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -77,7 +79,22 @@ class SignUpScreen extends StatelessWidget {
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white)),
                           onPressed: () {
-                            debugPrint('button was clicked');
+                            // sign up user
+                            if (authenticationController.profileImage != null &&
+                                authenticationController
+                                    .userName.text.isNotEmpty &&
+                                authenticationController
+                                    .email.text.isNotEmpty &&
+                                authenticationController
+                                    .password.text.isNotEmpty) {
+                              authenticationController.createAccountForNewUser(
+                                authenticationController.userName.text.trim(),
+                                authenticationController.email.text.trim(),
+                                authenticationController.password.text.trim(),
+                                authenticationController.profileImage!,
+                              );
+                              debugPrint('button was clicked');
+                            }
                           },
                           child: const Text(
                             "Sign Up",

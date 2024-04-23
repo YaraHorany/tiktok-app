@@ -40,16 +40,17 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // Email textField
-                      const InputTextField(
-                          iconData: Icon(Icons.email_outlined),
-                          fieldName: "Email Address"),
-                      const SizedBox(height: 20),
-                      // Password textField
-                      const InputTextField(
-                        iconData: Icon(Icons.lock_outline),
-                        fieldName: "Password",
-                        isObscure: true,
-                      ),
+                      // const InputTextField(
+                      //
+                      //     iconData: Icon(Icons.email_outlined),
+                      //     fieldName: "Email Address"),
+                      // const SizedBox(height: 20),
+                      // // Password textField
+                      // const InputTextField(
+                      //   iconData: Icon(Icons.lock_outline),
+                      //   fieldName: "Password",
+                      //   isObscure: true,
+                      // ),
                       const SizedBox(height: 20),
                       // Login button
                       SizedBox(
