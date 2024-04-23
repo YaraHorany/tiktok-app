@@ -3,10 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_app/authentication/screens/signup_screen.dart';
-import 'package:tiktok_app/widgets/text_form_field.dart';
+import '../../widgets/text_form_field.dart';
+import '../authentication_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  final AuthenticationController authenticationController =
+      Get.put(AuthenticationController());
+
+  LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +44,18 @@ class LoginScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // Email textField
-                      // const InputTextField(
-                      //
-                      //     iconData: Icon(Icons.email_outlined),
-                      //     fieldName: "Email Address"),
-                      // const SizedBox(height: 20),
-                      // // Password textField
-                      // const InputTextField(
-                      //   iconData: Icon(Icons.lock_outline),
-                      //   fieldName: "Password",
-                      //   isObscure: true,
-                      // ),
+                      InputTextField(
+                          controller: authenticationController.email,
+                          iconData: const Icon(Icons.email_outlined),
+                          fieldName: "Email Address"),
+                      const SizedBox(height: 20),
+                      // Password textField
+                      InputTextField(
+                        controller: authenticationController.password,
+                        iconData: const Icon(Icons.lock_outline),
+                        fieldName: "Password",
+                        isObscure: true,
+                      ),
                       const SizedBox(height: 20),
                       // Login button
                       SizedBox(
@@ -61,6 +66,15 @@ class LoginScreen extends StatelessWidget {
                                   MaterialStateProperty.all(Colors.white)),
                           onPressed: () {
                             debugPrint('button was clicked');
+                            if (authenticationController
+                                    .email.text.isNotEmpty &&
+                                authenticationController
+                                    .password.text.isNotEmpty) {
+                              authenticationController.loginUserNow(
+                                authenticationController.email.text.trim(),
+                                authenticationController.password.text.trim(),
+                              );
+                            }
                           },
                           child: const Text(
                             "Login",

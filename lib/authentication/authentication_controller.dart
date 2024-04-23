@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_app/authentication/screens/login_screen.dart';
+import 'package:tiktok_app/authentication/screens/signup_screen.dart';
 import 'user.dart' as user_model;
 
 class AuthenticationController extends GetxController {
@@ -71,11 +72,12 @@ class AuthenticationController extends GetxController {
 
       Get.snackbar(
           "Account Created", "Congratulations, your account has been created.");
+      Get.to(() => LoginScreen());
     } catch (error) {
-      print("error: $error");
+      debugPrint("error: $error");
       Get.snackbar("Account Creation Unsuccessful",
           "Error Occurred while creating the account.");
-      Get.to(() => const LoginScreen());
+      Get.to(() => LoginScreen());
     }
   }
 
@@ -92,5 +94,18 @@ class AuthenticationController extends GetxController {
     String downloadUrlOfUploadedImage = await taskSnapshot.ref.getDownloadURL();
 
     return downloadUrlOfUploadedImage;
+  }
+
+  void loginUserNow(String userEmail, String userPassword) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: userEmail, password: userPassword);
+      Get.snackbar("Logged-in succeeded", "You're logged-in successfully");
+      Get.to(() => SignUpScreen());
+    } catch (error) {
+      Get.snackbar(
+          "Login Unsuccessful", "Error occurred during signin authentication.");
+      Get.to(() => SignUpScreen());
+    }
   }
 }
