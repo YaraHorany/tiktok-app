@@ -7,9 +7,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_app/authentication/screens/login_screen.dart';
 import 'package:tiktok_app/authentication/screens/signup_screen.dart';
+import '../home/home_screen.dart';
 import 'user.dart' as user_model;
 
 class AuthenticationController extends GetxController {
+  late Rx<User?> _currentUser;
+
   late Rx<File?> _pickedFile;
   File? get profileImage => _pickedFile.value;
 
@@ -100,12 +103,32 @@ class AuthenticationController extends GetxController {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: userEmail, password: userPassword);
-      Get.snackbar("Logged-in succeeded", "You're logged-in successfully");
-      Get.to(() => SignUpScreen());
+      Get.snackbar("Login succeeded", "You're logged-in successfully");
+      Get.to(() => const HomeScreen());
     } catch (error) {
-      Get.snackbar(
-          "Login Unsuccessful", "Error occurred during signin authentication.");
+      Get.snackbar("Login Unsuccessful",
+          "Error occurred during sign in authentication.");
       Get.to(() => SignUpScreen());
     }
+  }
+
+  void gotoScreen(User? currentUser) {
+    // User is NOT already logged-in
+    if (currentUser == null) {
+      Get.offAll(() => LoginScreen());
+    }
+    // User is already logged-in
+    else {
+      Get.offAll(() => const HomeScreen());
+    }
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
+    _currentUser = Rx<User?>(FirebaseAuth.instance.currentUser);
+    _currentUser.bindStream(FirebaseAuth.instance.authStateChanges());
+    ever(_currentUser, gotoScreen);
   }
 }
