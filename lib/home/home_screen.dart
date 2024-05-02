@@ -3,7 +3,6 @@ import 'package:tiktok_app/home/profile/profile_screen.dart';
 import 'package:tiktok_app/home/search/search_screen.dart';
 import 'package:tiktok_app/home/upload_video/upload_custom_icon.dart';
 import 'package:tiktok_app/home/upload_video/upload_video_screen.dart';
-
 import 'following/followings_video_screen.dart';
 import 'for_you/for_you_video_screen.dart';
 
@@ -15,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int screenIndex = 1;
+  int screenIndex = 0;
   List screensList = [
     const ForYouVideoScreen(),
     const SearchScreen(),

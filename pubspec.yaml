@@ -43,6 +43,7 @@ dependencies:
   firebase_storage:
   google_fonts:
   image_picker: ^1.0.4
+  video_player:
 
 dev_dependencies:
   flutter_test:
