@@ -4,6 +4,8 @@ import 'authentication/authentication_controller.dart';
 import 'authentication/screens/login_screen.dart';
 import 'package:get/get.dart';
 
+// https://www.youtube.com/watch?v=lPwzBVMcj1s&list=PLxefhmF0pcPkvw_suc_FUCy8oCSPWer0r&index=1&ab_channel=MuhammadAli%27sCodingCafe
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

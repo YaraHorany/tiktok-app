@@ -4,7 +4,7 @@ class InputTextField extends StatelessWidget {
   final bool? isObscure;
   final Icon iconData;
   final String fieldName;
-  final TextEditingController? controller;
+  final TextEditingController controller;
 
   const InputTextField({
     Key? key,
